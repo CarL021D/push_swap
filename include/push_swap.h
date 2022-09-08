@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 10:51:52 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/08 12:57:34 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:20:08 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,16 @@ void    create_stack_1(t_stack **stack_1, t_data *data);
 void    set_final_index_values(t_stack **stack_1);
 void    set_nodes_values(t_stack **stack_1, t_data *data);
 void    set_current_position(t_stack **stack);
-void    set_target_position(t_stack **stack_1, t_stack *node/*, t_data *data*/);
-void    set_stack_a_cost(t_stack **stack_1, t_stack *node, t_data *data);
-void    set_stack_b_cost(t_stack **stack_2, t_stack *node, t_data *data);
+void    set_target_position(t_stack **stack_1, t_stack *node);
+void    set_stack_a_cost(t_stack **stack_1, t_stack *node);
+void    set_stack_b_cost(t_stack **stack_2, t_stack *node);
 
 
 //            FREE
 void    free_tab_and_exit(t_data *data);
 
 //            UTILS
+int		    lst_size(t_stack **lst);
 long long	ft_atoi(char *nptr);
 
 

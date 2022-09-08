@@ -6,65 +6,11 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:17 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/08 13:11:49 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:58:45 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-// t_stack	*create_node(void *content)
-// {
-// 	t_stack	*node;
-
-// 	node = malloc(sizeof(t_stack));
-// 	if (!node)
-// 		return (NULL);
-// 	node->next = NULL;
-// 	return (node);
-// }
-
-// void	ft_lstadd_front(t_stack **lst, t_stack *new)
-// {
-// 	if (!lst || !new)
-// 		return ;
-// 	new->next = *lst;
-// 	*lst = new;
-// }
-
-// void	ft_lstadd_back(t_stack **lst, t_stack *new)
-// {
-// 	t_stack	*node;
-
-// 	if (!lst || !new)
-// 		return ;
-// 	if (!(*lst))
-// 	{
-// 		*lst = new;
-// 		(*lst)->next = NULL;
-// 	}
-// 	else
-// 	{
-// 		node = (*lst);
-// 		while (node->next)
-// 			node = node->next;
-// 		node->next = new;
-// 	}
-// }
-
-// int    set_stack_len(t_stack **stack, t_data *data)
-// {
-//     t_stack     *cpy;
-//     int         len;
-
-//     cpy = *stack;
-//     len = 0;
-//     while (cpy)
-//     {
-//         len++;
-//         cpy = cpy->next;
-//     }
-//     return (len);
-// }
 
 int main(int ac, char **av)
 {
@@ -83,9 +29,7 @@ int main(int ac, char **av)
     stack_1 = NULL;
     // stack_2 = NULL;
     init_stack_1(&stack_1, &data);
-
-
-
+    free(data.values_arr);
 
 
 
