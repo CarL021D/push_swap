@@ -6,13 +6,13 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:17 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/03 18:56:45 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:11:49 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// t_stack	*ft_lstnew(void *content)
+// t_stack	*create_node(void *content)
 // {
 // 	t_stack	*node;
 
@@ -21,7 +21,7 @@
 // 		return (NULL);
 // 	node->next = NULL;
 // 	return (node);
-// }gc
+// }
 
 // void	ft_lstadd_front(t_stack **lst, t_stack *new)
 // {
@@ -51,189 +51,20 @@
 // 	}
 // }
 
-void    free_tab_and_exit(t_data *data)
-{
-    free(data->number_arr);
-    exit(EXIT_FAILURE);
-}
+// int    set_stack_len(t_stack **stack, t_data *data)
+// {
+//     t_stack     *cpy;
+//     int         len;
 
-
-long long	ft_atoi(char *nptr)
-{
-	long long	res;
-	int	sign;
-
-    
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
-		nptr++;
-	sign = 1;
-	if (*nptr == '+' || *nptr == '-')
-	{
-		if (*nptr == '-')
-			sign *= -1;
-		nptr++;
-	}
-    while (*nptr == '0')
-    {
-        nptr++;
-    }
-    res = 0;
-	while (*nptr >= '0' && *nptr <= '9')
-	{
-		res = res * 10 + *nptr - 48;
-		nptr++;
-	}
-	return (sign * res);
-}
-
-int args_are_num(char **av)
-{
-    int     i;
-    int     j;
-        
-    i = 1;
-    while (av[i])
-    {
-        j = 0;
-        if (av[i][j] == '-' || av[i][j] == '+')
-            j++;
-        while (av[i][j])
-        {
-            if (av[i][j] < '0' || av[i][j] > '9')
-                return (FALSE);
-            j++;
-        }
-        i++;
-    }
-    return (TRUE);
-}
-
-void     set_values_int_tab(t_data *data, char **av, int ac)
-{
-    int     i;
-    int     j;
-    
-    i = 1;
-    j = 0;
-    
-    data->values_count = ac - 1;
-    data->number_arr = malloc(sizeof(int *) * data->values_count);
-    if (!data->number_arr)
-        exit(EXIT_FAILURE);
-    while (--ac)
-        data->number_arr[j++] = ft_atoi(av[i++]);
-}
-
-void    exit_if_values_already_sorted(t_data *data)
-{
-    int     i;
-    int     value_count;
-
-    i = 0;
-    value_count = data->values_count - 1;
-    while (value_count && data->number_arr[i] < data->number_arr[i + 1])
-    {
-        i++;
-        value_count--;
-    }
-    if (value_count == 0)
-    {
-        printf("sorted\n");
-        free_tab_and_exit(data);
-    }
-}
-
-int     check_value_len(long long value)
-{
-    int     i;
-    long long   num_copy;
-    
-    i = 0;
-    num_copy = value;
-    while (num_copy)
-    {
-        num_copy /= 10;
-        i++;
-    }
-    return (i);
-}
-
-
-void    check_values_range(t_data *data)
-{
-    int     i;
-    int     value_count;
-    int     value_len;
-
-    i = 0;
-    value_count = data->values_count;
-    while (value_count)
-    {
-        value_len = check_value_len(data->number_arr[i]);
-        if (value_len > 10)
-        {
-            printf("value len to long\n");
-            free_tab_and_exit(data);
-        }
-        if (data->number_arr[i] < INT_MIN || data->number_arr[i] > INT_MAX)
-        {
-            printf("out of range\n");
-            free_tab_and_exit(data);
-        }
-        i++;
-        value_count--;
-    }
-}
-
-void    check_duplicate(t_data *data)
-{
-    int     i;
-    int     j;
-    
-    i = 0;
-    while (i < data->values_count - 1)
-    {
-        j = i + 1;
-        while (j < data->values_count)
-        {
-            if (data->number_arr[i] == data->number_arr[j])
-            {
-                printf("duplicate\n");
-                free_tab_and_exit(data);
-            }
-            j++;
-        }
-        i++;
-    }
-    printf("no duplicate\n");
-}
-
-t_stack	*ft_lstnew(void)
-{
-	t_stack	*node;
-
-	node = malloc(sizeof(t_stack));
-	if (!node)
-		return (NULL);
-	node->next = NULL;
-	return (node);
-}
-
-
-
-void    create_and_init_mode(t_stack *stack_1, t_data *data)
-{
-    int     i;
-    
-    i = 0;
-    stack_1 = ft_lstnew();
-    while (i < data->values_count)
-    {
-        
-
-        i++;
-    }
-}
+//     cpy = *stack;
+//     len = 0;
+//     while (cpy)
+//     {
+//         len++;
+//         cpy = cpy->next;
+//     }
+//     return (len);
+// }
 
 int main(int ac, char **av)
 {
@@ -251,6 +82,43 @@ int main(int ac, char **av)
     
     stack_1 = NULL;
     // stack_2 = NULL;
-    
-    create_and_init_mode(stack_1, &data);
+    init_stack_1(&stack_1, &data);
+
+
+
+
+
+
+    t_stack *cpy2;
+    cpy2 = stack_1;
+    t_stack *cpy3;
+    // cpy3->target_pos = 3;
+    cpy3 = malloc(sizeof(t_stack));
+    cpy3->index = 0;
+    cpy3->value = 1;
+    set_target_position(&stack_1, cpy2);
+
+    // while (cpy2)
+    // {        // set_stack_a_cost(&stack_1, cpy3, &data);
+    //     // set_stack_b_cost(&stack_1, cpy2, &data);
+    //     cpy2 = cpy2->next; 
+    // }
+
+    printf("\n");
+    int c = 0;
+    t_stack *cpy;
+    cpy = stack_1;
+    while (c < data.values_count)
+    {
+        printf("value: %d, index: %d, current position: %d, b_cost: %d\n", cpy->value, cpy->index, cpy->current_pos, cpy->cost_b);
+        c++;
+        cpy = cpy->next;
+    }
 }
+
+// target pos: position dans A de l index qui suit l'index du nombre qu'on veut bouger (qui est dans B)
+
+// cost_a nombre de rr ou r pour preparer A acceuillir le nombre a bouger
+//        le nombrede rr r dans A pour acceuillr B avant l index qui suit
+
+// cost B nombre de rr ou r pour passer a la pos 0
