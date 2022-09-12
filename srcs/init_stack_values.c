@@ -6,22 +6,22 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:13:32 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/08 16:25:41 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/13 00:16:22 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void    set_final_index_values(t_stack **stack_1)
+void    set_final_index_values(t_stack **stack_a)
 {
     t_stack     *node_to_set;
     t_stack     *copy;
     int         pos;
 
-    node_to_set = *stack_1;
+    node_to_set = *stack_a;
     while (node_to_set)
     {
-        copy = *stack_1;
+        copy = *stack_a;
         pos = 0;
         while (copy)
         {
@@ -34,17 +34,17 @@ void    set_final_index_values(t_stack **stack_1)
     }
 }
 
-void    set_nodes_values(t_stack **stack_1, t_data *data)
+void    set_nodes_values(t_stack **stack_a, t_data *data)
 {
     t_stack     *node;
     int         i;
 
-    node = *stack_1;
+    node = *stack_a;
     i = 0;
     while (node)
     {
         node->value = data->values_arr[i];
-        printf("%d\n", node->value);
+        // printf("%d\n", node->value);
         node = node->next;
         i++;
     }
@@ -65,14 +65,13 @@ void    set_current_position(t_stack **stack)
     }
 }
 
-void    set_target_position(t_stack **stack_1, t_stack *node)
+void    set_target_position(t_stack **stack_a, t_stack *node)
 {
     t_stack     *cpy;
     int         i;
     int         range;
-    int         targ_pos;
 
-    cpy = *stack_1;
+    cpy = *stack_a;
     i = 0;
     range = cpy->index - node->index;
     while (cpy)
@@ -92,14 +91,14 @@ void    set_target_position(t_stack **stack_1, t_stack *node)
     }
 }
 
-void    set_stack_a_cost(t_stack **stack_1, t_stack *node)
+void    set_stack_a_cost(t_stack **stack_a, t_stack *node)
 {
     t_stack     *cpy;
     int         i;
     int         mid;
 
-    cpy = *stack_1;
-    mid = lst_size(stack_1) / 2;    
+    cpy = *stack_a;
+    mid = lst_size(stack_a) / 2;    
     if (node->current_pos <= (mid - 1))
         node->cost_a = node->target_pos;
     else
@@ -121,16 +120,16 @@ void    set_stack_a_cost(t_stack **stack_1, t_stack *node)
     printf("cost_a: %d\n", node->cost_a);
 }
 
-void    set_stack_b_cost(t_stack **stack_2, t_stack *node)
+void    set_stack_b_cost(t_stack **stack_b, t_stack *node)
 {
     t_stack     *cpy;
     int         cost;
     int         mid;
 
-    mid = (lst_size(stack_2) / 2);
+    mid = (lst_size(stack_b) / 2);
     if (node->current_pos <= (mid - 1))
     {
-        cpy = *stack_2;
+        cpy = *stack_b;
         cost = 0;
         while (cpy != node)
         {

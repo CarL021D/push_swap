@@ -6,18 +6,18 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:13:32 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/07 14:49:44 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:29:59 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void    init_stack_1(t_stack **stack_1, t_data *data)
+void    init_stack_a(t_stack **stack_a, t_data *data)
 {
-    create_stack_1(stack_1, data);
-    set_nodes_values(stack_1, data);
-    set_final_index_values(stack_1);
-    set_current_position(stack_1);
+    create_stack(stack_a, data);
+    set_nodes_values(stack_a, data);
+    set_final_index_values(stack_a);
+    set_current_position(stack_a);
 }
 
 // void    set_final_index_values(t_stack **stack_1)

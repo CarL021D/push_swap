@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 10:51:52 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/08 14:20:08 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/12 22:05:22 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ typedef struct s_data
     
 }   t_data;
 
+//           INSTRUCTIONS
+void    rotate(t_stack **stack);
+void    reverse_rotate(t_stack **stack);
+void    swap_first_and_second(t_stack **stack);
+void    push(t_stack **stack_from, t_stack **stack_to);
+
 //           CHECK ARGUMENTS
 int     args_are_num(char **av);
 int     check_value_len(long long value);
@@ -47,22 +53,22 @@ void    exit_if_values_already_sorted(t_data *data);
 void    check_duplicate(t_data *data);
 void    check_values_range(t_data *data);
 
-//            INIT LIST
-t_stack	*create_node();
-void    init_stack_1(t_stack **stack_1, t_data *data);
-void    create_stack_1(t_stack **stack_1, t_data *data);
-void    set_final_index_values(t_stack **stack_1);
-void    set_nodes_values(t_stack **stack_1, t_data *data);
+//           INIT LIST
+t_stack	*create_node(t_data *data);
+void    init_stack_a(t_stack **stack_a, t_data *data);
+void    create_stack(t_stack **stack_a, t_data *data);
+void    set_final_index_values(t_stack **stack_a);
+void    set_nodes_values(t_stack **stack_a, t_data *data);
 void    set_current_position(t_stack **stack);
-void    set_target_position(t_stack **stack_1, t_stack *node);
-void    set_stack_a_cost(t_stack **stack_1, t_stack *node);
-void    set_stack_b_cost(t_stack **stack_2, t_stack *node);
+void    set_target_position(t_stack **stack_a, t_stack *node);
+void    set_stack_a_cost(t_stack **stack_a, t_stack *node);
+void    set_stack_b_cost(t_stack **stack_b, t_stack *node);
 
 
-//            FREE
+//           FREE
 void    free_tab_and_exit(t_data *data);
 
-//            UTILS
+//           UTILS
 int		    lst_size(t_stack **lst);
 long long	ft_atoi(char *nptr);
 
