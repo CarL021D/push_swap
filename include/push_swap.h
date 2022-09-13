@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 10:51:52 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/14 00:27:20 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:58:32 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,17 @@ typedef struct s_stack
 
 typedef struct s_data
 {
-    long long       *values_arr;
-    int             *tab_3;
+    long long       *tab;
     int             values_count;
     
 }   t_data;
 
 
 //           SORT
-void    sort_exec(t_stack **stack_a/*, t_stack **stack_b*/, t_data *data);
+void    sort_exec(t_stack **stack_a, /*t_stack **stack_b,*/ t_data *data);
 void    sort_2(t_stack **stack_a);
 void    sort_3(t_stack **stack_a, t_data *data);
-
-void    init_tab_of_3(t_stack **stack_a, t_data *data);
+// void    sort_4_and_more(t_stack **stack_a, t_stack **stack_b, t_data *data);
 
 
 

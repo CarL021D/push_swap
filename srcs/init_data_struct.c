@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 02:03:29 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/13 02:04:10 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:57:09 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void     set_values_int_tab(t_data *data, char **av, int ac)
     j = 0;
     
     data->values_count = ac - 1;
-    data->values_arr = malloc(sizeof(int *) * data->values_count);
-    if (!data->values_arr)
+    data->tab = malloc(sizeof(int *) * data->values_count);
+    if (!data->tab)
         exit(EXIT_FAILURE);
     while (--ac)
-        data->values_arr[j++] = ft_atoi(av[i++]);
+        data->tab[j++] = ft_atoi(av[i++]);
 }

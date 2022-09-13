@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:13:32 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/13 00:16:22 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:57:20 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void    set_nodes_values(t_stack **stack_a, t_data *data)
     i = 0;
     while (node)
     {
-        node->value = data->values_arr[i];
+        node->value = data->tab[i];
         // printf("%d\n", node->value);
         node = node->next;
         i++;

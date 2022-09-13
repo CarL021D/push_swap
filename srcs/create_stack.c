@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:20:35 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/12 22:06:51 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:56:52 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_stack	*create_node(t_data *data)
 	node = malloc(sizeof(t_stack));
 	if (!node)
     {
-        free(data->values_arr);
+        free(data->tab);
         exit(EXIT_FAILURE);        
     }
 	node->next = NULL;

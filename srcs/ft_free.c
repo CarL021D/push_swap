@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:40:54 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/05 20:42:02 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:57:01 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void    free_tab_and_exit(t_data *data)
 {
-    free(data->values_arr);
+    free(data->tab);
     exit(EXIT_FAILURE);
 }

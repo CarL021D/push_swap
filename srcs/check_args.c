@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args_1.c                                     :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:26:22 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/13 02:04:03 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:58:02 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void    exit_if_values_already_sorted(t_data *data)
 
     i = 0;
     value_count = data->values_count - 1;
-    while (value_count && data->values_arr[i] < data->values_arr[i + 1])
+    while (value_count && data->tab[i] < data->tab[i + 1])
     {
         i++;
         value_count--;
@@ -79,14 +79,14 @@ void    check_values_range(t_data *data)
     value_count = data->values_count;
     while (value_count)
     {
-        value_len = check_value_len(data->values_arr[i]);
+        value_len = check_value_len(data->tab[i]);
         if (value_len > 10)
         {
             // Printf
             printf("value len to long\n");
             free_tab_and_exit(data);
         }
-        if (data->values_arr[i] < INT_MIN || data->values_arr[i] > INT_MAX)
+        if (data->tab[i] < INT_MIN || data->tab[i] > INT_MAX)
         {
             // Printf
             printf("out of range\n");
@@ -108,7 +108,7 @@ void    check_duplicate(t_data *data)
         j = i + 1;
         while (j < data->values_count)
         {
-            if (data->values_arr[i] == data->values_arr[j])
+            if (data->tab[i] == data->tab[j])
             {
                 // Printf
                 printf("duplicate\n");
