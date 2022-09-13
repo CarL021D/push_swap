@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:13:32 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/14 00:57:20 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/14 01:45:40 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void    set_stack_a_cost(t_stack **stack_a, t_stack *node)
             i++;
             cpy = cpy->next;
         }
+        i *= -1;
         node->cost_a = i;
     }
     printf("cost_a: %d\n", node->cost_a);
@@ -146,6 +147,7 @@ void    set_stack_b_cost(t_stack **stack_b, t_stack *node)
             cost++;
             cpy = cpy->next;
         }
+        cost *= -1;
     }
     node->cost_b = cost;
     printf("cost_b: %d\n", node->cost_b);

@@ -6,13 +6,13 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:17 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/14 00:50:24 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/14 01:35:17 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// void    sort_4_and_more(t_stack **stack_a, t_stack **stack_b, t_data *data)
+// void    sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 // {
     
 // }
@@ -24,7 +24,7 @@ void    sort_exec(t_stack **stack_a, /*t_stack **stack_b,*/ t_data *data)
     if (data->values_count == 3)
         sort_3(stack_a, data);
     // if (data->values_count >= 4)
-    //     sort_4_and_more(stack_a, stack_b, data);
+    //     sort_4_and_above(stack_a, stack_b, data);
 }
 
 int main(int ac, char **av)
