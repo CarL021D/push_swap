@@ -6,12 +6,13 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 20:17:11 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/13 01:12:32 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/13 02:09:37 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+// ra, rb
 void    rotate(t_stack **stack)
 {
     t_stack     *node;
@@ -26,6 +27,7 @@ void    rotate(t_stack **stack)
     node->next = NULL;    
 }
 
+// rra, rrb
 void    reverse_rotate(t_stack **stack)
 {
     t_stack     *node;
@@ -46,6 +48,7 @@ void    reverse_rotate(t_stack **stack)
     node->next = NULL;
 }
 
+// sa, sb
 void    swap_first_and_second(t_stack **stack)
 {
     t_stack     *node;
@@ -56,6 +59,7 @@ void    swap_first_and_second(t_stack **stack)
     *stack = node;
 }
 
+// pa , pb
 void    push(t_stack **stack_from, t_stack **stack_to)
 {
     t_stack     *node;

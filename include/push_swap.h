@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 10:51:52 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/12 22:05:22 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/13 02:21:38 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct s_data
     int     values_count;
     
 }   t_data;
+
+
+//           SORT
+void    sort(t_stack **stack_a/*, t_stack **stack_b*/, t_data *data);
+void    sort_2_values(t_stack **stack_a, t_data *data);
+void    sort_3_values(stack_a);
+
 
 //           INSTRUCTIONS
 void    rotate(t_stack **stack);
