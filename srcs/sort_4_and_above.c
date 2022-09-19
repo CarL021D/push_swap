@@ -29,33 +29,43 @@ int     presort_divider(int count)
         divider = count / 10;
     else
         divider = count / 20;
+    return (divider);
 }
 
-void    push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
-{
-    t_stack     *cpy;
-    int         range;
-    int         divider;
-    int         count;
+void	
 
-    divider = presort_divider(data->values_count);
-    range = divider;
-    while (range < data->values_count)
-    {
-        cpy = *stack_a;
-        count = 0;
-        while (cpy)
-        {
-            if ((cpy->index < range) && (count < range))
-            {
-                push(stack_a, stack_b);
-                write(1, "pb\n", 3);
-                count++;
-            }
-            cpy = cpy->next;
-        }
-        range += divider;       
-    }
+
+
+void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
+{
+    	t_stack		*cpy;
+    	int		divider;
+    	int		range;
+	int		loop;
+
+	divider = data->value_count;
+	range = divider;
+	while ((range + 3) <= data->value_count)
+	{
+		cpy = *stack_a;
+		loop = 0;
+		while (cpy && (loop < divider))
+		{
+			if (cpy->index < range &&
+			cpy->index != data->value_count - 1
+			cpy->index != data->value_count - 3
+			cpy->index != data->value_count - 2)
+			{
+				rotata_node_til_first...;
+				push(stack_a, stack_b);
+				write(1, "pb\n", 3);
+				range += divider;
+			}
+			loop++;
+			cpy = cpy->next;
+		}
+		range += divider;
+	}
 }
 
 
@@ -119,38 +129,41 @@ t_stack     *cheapest_node(t_stack **stack_b)
     return (node_to_push);
 }
 
-void    rotate_a_to_take_b_node(t_stack **stack_a, int node_index)
+void    rotate_a_to_take_b_node(t_stack **stack_a, t_stack *node)
 {
-    while (node_index)
+    while (node->cost_a)
     {
-        if (node_index > 0)
+        if (node->cost_a > 0)
         {
             rotate(stack_a);
             write(1, "ra\n", 3);
+	    node->cost_a++;
         }
         else
         {
             reverse_rotate(stack_a);
-            write(1, "rra\n", 3); 
+            write(1, "rra\n", 3);
+	    node->cost_a--;
         }
-        node_index--;
     }
 }
 
 
 void    rotate_b_til_node_is_first(t_stack **stack_b, t_stack *node, int size)
 {
-    while ((*stack_b)->index != node->index)
+    while (node->b_cost)
     {
-        if (node->index < size)
+        if (node->b_cost < size)
         {
             rotate(stack_b);
             write(1, "rb\n", 3);
+	    node->b_cost--;
         }
         else
         {
             reverse_rotate(stack_b);
             write(1, "rrb\n", 3); 
+	    node->b_cost++;
         }
     }
 }
