@@ -24,11 +24,20 @@ RM		= rm -f
 
 INCS    = include
 
-all:	${NAME}
 
 .c.o:
 		@$(CC) ${CFLAGS} -I$(INCS) -c $< -o $@
 
-${NAME}:	${OBJS} 
-		@${CC} ${CFLAGS} ${OBJS}  -lX11 -lXext -o so_long
-		@printf "%s\e[0;32m so_long : Compiling object file into executable\n\e[0m" "-"
+${NAME}:	${OBJS}
+
+all:		${NAME}
+
+clean:
+		${RM} ${OBJS} ${OBJS_B}
+
+fclean:	clean
+		${RM} ${NAME}
+
+re: 		fclean all
+
+.PHONY: all clean fclean re

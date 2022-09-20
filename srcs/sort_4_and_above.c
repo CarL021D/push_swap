@@ -54,32 +54,32 @@ int     presort_divider(int count)
 
 void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
 {
-    t_stack		*cpy;
+	t_stack		*cpy;
 	int		divider;
 	int		range;
-    int		loop;
-    int     stack_size;
-    
+	int		loop;
+	int     stack_size;
+
 	divider = presort_divider(data->values_count);
 	range = divider;
-    stack_size = lst_size(stack_a);
+	stack_size = lst_size(stack_a);
 	while (range <= data->values_count)
 	{
 		cpy = *stack_a;
 		loop = 0;
 		while (cpy && (loop < divider))
 		{
-            if (cpy->index < range && cpy->index != data->values_count - 1 \
+			if (cpy->index < range && cpy->index != data->values_count - 1 \
 			&& cpy->index != data->values_count - 2 && cpy->index != data->values_count - 3)
 			{
-                rotate_til_node_is_first(stack_a, cpy->index, cpy->current_pos ,stack_size);
-	            push(stack_a, stack_b);
-	            write(1, "pb\n", 3);
-                set_current_position(stack_a);
-                loop++;
+				rotate_til_node_is_first(stack_a, cpy->index, cpy->current_pos ,stack_size);
+				push(stack_a, stack_b);
+				write(1, "pb\n", 3);
+                		set_current_position(stack_a);
+                		loop++;
 				range += divider;
 			}
-            cpy = cpy->next;
+            		cpy = cpy->next;
 		}
 		range += divider;
 	}

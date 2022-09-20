@@ -70,10 +70,12 @@ void    set_target_position(t_stack **stack_a, t_stack *node)
     t_stack     *cpy;
     int         i;
     int         range;
+    int		current_range;
 
     cpy = *stack_a;
     i = 0;
     range = cpy->index - node->index;
+    current_range = 0;
     while (cpy)
     {
         if (node->index == cpy->index + 1)
@@ -81,7 +83,8 @@ void    set_target_position(t_stack **stack_a, t_stack *node)
             node->target_pos = i;
             return ;
         }
-        if (cpy->index - node->index < range/* && cpy->index > node->index*/)
+	current_range = cpy->index - node->index;
+        if (current_range < range && current_range > 0)
         {
             node->target_pos = i;
             range = cpy->index - node->index;  
@@ -127,28 +130,28 @@ void    set_stack_b_cost(t_stack **stack_b, t_stack *node)
     int         cost;
     int         mid;
 
-    mid = (lst_size(stack_b) / 2);
-    if (node->current_pos <= (mid - 1))
-    {
-        cpy = *stack_b;
-        cost = 0;
-        while (cpy != node)
-        {
-            cost++;
-            cpy = cpy->next;
-        }   
-    }
-    else
-    {
-        cpy = node;
-        cost = 1;      
-        while (cpy->next)
-        {    
-            cost++;
-            cpy = cpy->next;
-        }
-        cost *= -1;
-    }
-    node->cost_b = cost;
-    printf("cost_b: %d\n", node->cost_b);
+	cost = 0;
+	mid = (lst_size(stack_b) / 2);
+	if (node->current_pos <= mid)
+	{
+		cpy = *stack_b;
+		while (cpy->index != node->index)
+		{
+			cost++;
+			cpy = cpy->next;
+		}
+	}
+	else
+	{
+		cpy = node;
+		while (cpy->next)
+		{
+			cost++;
+			cpy = cpy->next;
+		}
+		cost++;
+        	cost *= -1;
+	}
+	node->cost_b = cost;
+	printf("cost_b: %d\n", node->cost_b);
 }
