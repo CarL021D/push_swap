@@ -6,24 +6,31 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:35:50 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/17 22:53:03 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/20 02:48:25 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// void    sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
-// {
+void    sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
+{
+    push_presort_to_b(stack_a, stack_b, data);   
     
-// }
+     
+    // sort_3(stack_a);
+    // (void)stack_b;
+    // (void)data;
+
+    // sort_a(stack_a, data);
+}
 
 int     presort_divider(int count)
 {
     int     divider;
 
     if (count <= 20)
-        divider = count / 3;
-    else if (count <= 60)
+        divider = (count / 3);
+    else if (count <= 50)
         divider = count / 5;
     else if (count <= 150)
         divider = count / 10;
@@ -32,69 +39,54 @@ int     presort_divider(int count)
     return (divider);
 }
 
-void	
+// void    push_to_b(t_stack **stack_a, t_stack **stack_b, t_stack *cpy, int size)
+// {
+    
+// }
 
+// void    push_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
+// {
+//     t_stack *cpy;
 
+//     cpy = *stack_a;
+    
+// }
 
 void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
 {
-    	t_stack		*cpy;
-    	int		divider;
-    	int		range;
-	int		loop;
-
-	divider = data->value_count;
+    t_stack		*cpy;
+	int		divider;
+	int		range;
+    int		loop;
+    int     stack_size;
+    
+	divider = presort_divider(data->values_count);
 	range = divider;
-	while ((range + 3) <= data->value_count)
+    stack_size = lst_size(stack_a);
+	while (range <= data->values_count)
 	{
 		cpy = *stack_a;
 		loop = 0;
 		while (cpy && (loop < divider))
 		{
-			if (cpy->index < range &&
-			cpy->index != data->value_count - 1
-			cpy->index != data->value_count - 3
-			cpy->index != data->value_count - 2)
+            if (cpy->index < range && cpy->index != data->values_count - 1 \
+			&& cpy->index != data->values_count - 2 && cpy->index != data->values_count - 3)
 			{
-				rotata_node_til_first...;
-				push(stack_a, stack_b);
-				write(1, "pb\n", 3);
+                rotate_til_node_is_first(stack_a, cpy->index, cpy->current_pos ,stack_size);
+	            push(stack_a, stack_b);
+	            write(1, "pb\n", 3);
+                set_current_position(stack_a);
+                loop++;
 				range += divider;
 			}
-			loop++;
-			cpy = cpy->next;
+            cpy = cpy->next;
 		}
 		range += divider;
 	}
 }
 
 
-void    sort_a(t_stack **stack_a, t_data *data)
-{
-    t_stack     *node;
-    int         rotate_nb;
 
-    node = *stack_a;
-    rotate_nb = 0;
-    while (node->index != 0)
-    {
-        node = node->next;
-        rotate_nb++;
-    }
-    while ((*stack_a)->index != 0)
-    {
-        if (rotate_nb < (data->values_count / 2))
-        {
-            rotate(stack_a);
-            write(1, "ra\n", 3);
-        }
-        else
-        {
-            reverse_rotate(stack_a);
-            write(1, "rra\n", 4);
-        }
-    }
-}
 
 int         total_positive_cost(int a_cost, int b_cost)
 {
@@ -119,8 +111,8 @@ t_stack     *cheapest_node(t_stack **stack_b)
     cpy = *stack_b;
     while (cpy)
     {
-        node_total_cost = total_positive_cost(node_to_push->cost_a,
-            node_to_push->cost_b);
+        node_total_cost = total_positive_cost(node_to_push->cost_a, \
+        node_to_push->cost_b);
         cpy_total_cost = total_positive_cost(cpy->cost_a, cpy->cost_b);
         if (node_total_cost > cpy_total_cost)
             node_to_push = cpy;
@@ -137,33 +129,68 @@ void    rotate_a_to_take_b_node(t_stack **stack_a, t_stack *node)
         {
             rotate(stack_a);
             write(1, "ra\n", 3);
-	    node->cost_a++;
+            node->cost_a--;
         }
         else
         {
             reverse_rotate(stack_a);
             write(1, "rra\n", 3);
-	    node->cost_a--;
+            node->cost_a++; 
+        }
+    }
+}
+
+void    rotate_til_node_is_first(t_stack **stack, int index, int pos, int size)
+{
+    while ((*stack)->index != index)
+    {
+        if (pos <= (size / 2))
+        {
+            rotate(stack);
+            write(1, "ra\n", 3);
+        }
+        else
+        {
+            reverse_rotate(stack);
+            write(1, "rra\n", 4); 
         }
     }
 }
 
 
-void    rotate_b_til_node_is_first(t_stack **stack_b, t_stack *node, int size)
+
+
+
+
+
+
+
+
+
+void    sort_a(t_stack **stack_a, t_data *data)
 {
-    while (node->b_cost)
+    t_stack     *node;
+    int         rotate_nb;
+
+    node = *stack_a;
+    rotate_nb = 0;
+    // printf("%d\n", (*stack_a)->value);
+    while (node->index != 0)
     {
-        if (node->b_cost < size)
+        node = node->next;
+        rotate_nb++;
+    }
+    while ((*stack_a)->index != 0)
+    {
+        if (rotate_nb <= (data->values_count / 2))
         {
-            rotate(stack_b);
-            write(1, "rb\n", 3);
-	    node->b_cost--;
+            rotate(stack_a);
+            write(1, "ra\n", 3);
         }
         else
         {
-            reverse_rotate(stack_b);
-            write(1, "rrb\n", 3); 
-	    node->b_cost++;
+            reverse_rotate(stack_a);
+            write(1, "rra\n", 4);
         }
     }
 }

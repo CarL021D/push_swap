@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:13:32 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/12 21:29:59 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:10:52 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void    init_stack_a(t_stack **stack_a, t_data *data)
     set_current_position(stack_a);
 }
 
+// void    update_stack_values(t_stack stack);
+// {
+//     set_current_position(stack);
+// }
 // void    set_final_index_values(t_stack **stack_1)
 // {
 //     t_stack     *node_to_set;

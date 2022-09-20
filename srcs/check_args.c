@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:26:22 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/14 00:58:02 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:21:41 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,4 @@ void    check_duplicate(t_data *data)
         }
         i++;
     }
-    // Printf
-    printf("no duplicate, not sorted\n");
 }

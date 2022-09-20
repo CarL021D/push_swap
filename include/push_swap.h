@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 10:51:52 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/14 01:34:59 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/19 23:08:37 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,17 @@ typedef struct s_data
 
 
 //           SORT
-void    sort_exec(t_stack **stack_a, /*t_stack **stack_b,*/ t_data *data);
+void    sort_exec(t_stack **stack_a, t_stack **stack_b, t_data *data);
 void    sort_2(t_stack **stack_a);
-void    sort_3(t_stack **stack_a, t_data *data);
-// void    sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data);
+void    sort_3(t_stack **stack_a);
+void    sort_3_instructions(t_stack **stack_a, int *tab);
+void    sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data);
 
+//           SORT UTILS
+int     presort_divider(int count);
+void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data);
+void    sort_a(t_stack **stack_a, t_data *data);
+void    rotate_til_node_is_first(t_stack **stack, int index, int pos, int size);
 
 
 //           INSTRUCTIONS
