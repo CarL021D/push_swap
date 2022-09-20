@@ -52,7 +52,7 @@ int     presort_divider(int count);
 void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data);
 void    sort_a(t_stack **stack_a, t_data *data);
 void    rotate_til_node_is_first(t_stack **stack, int index, int pos, int size);
-
+t_stack         *cheapest_node(t_stack **stack_b);
 
 //           INSTRUCTIONS
 void    rotate(t_stack **stack);
