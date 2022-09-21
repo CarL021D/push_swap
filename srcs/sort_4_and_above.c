@@ -15,15 +15,44 @@
 void	sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 {
 	t_stack		*node;
+	t_stack		*a_node;
+	t_stack		*b_node;
+	int		stack_a_size;
+	int		stack_b_size;
 
+	stack_a_size = 3;
+	stack_b_size = (data->values_count - 3);
+	
 	push_presort_to_b(stack_a, stack_b, data);   
 	sort_3(stack_a);
-	
-	node = cheapest_node(stack_b);
-	printf("cheapest node: value %d, index %d\n", node->value, node->index);
-	printf("cost : A %d, B %d\n", node->cost_a, node->cost_b);
+	while (*stack_b)
+	{
+		//TO DO RESET COST
+		a_node = *stack_a;
+		b_node = *stack_b;
+		while (a_node)
+		{
+			set_stack_a_cost(stack_a, a_node);
+			a_node = a_node->next;
+		}
+		while (b_node)
+		{
+			set_stack_b_cost(stack_b, b_node);
+			b_node = b_node->next;
+		}
+		set_current_position(stack_b);
 
+	 	node = cheapest_node(stack_b);	
+		rotate_til_node_is_first(stack_b, node->index, node->current_pos, stack_b_size);
+		rotate_til_node_is_first(stack_a, set_target_position(stack_a, node), node->current_pos, stack_a_size);
+		push(stack_b, stack_a);
+		write(1, "pa\n", 3);
+	}
+//	rotate_til_node_is_first(stack_b, node->index,
+//		node->current_pos, stack_b_size);
 
+//	printf("cheapest node: value %d, index %d\n", node->value, node->index);
+//	printf("cost : A %d, B %d\n", node->cost_a, node->cost_b);
 //	(void)stack_b;
 //	(void)data;
 

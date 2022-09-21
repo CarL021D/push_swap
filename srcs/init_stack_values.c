@@ -65,33 +65,37 @@ void    set_current_position(t_stack **stack)
     }
 }
 
-void    set_target_position(t_stack **stack_a, t_stack *node)
+int	set_target_position(t_stack **stack_a, t_stack *node)
 {
-    t_stack     *cpy;
-    int         i;
-    int         range;
-    int		current_range;
+	t_stack		*cpy;
+	int		i;
+	int		range;
+	int		current_range;
+	int		target_index;
 
-    cpy = *stack_a;
-    i = 0;
-    range = cpy->index - node->index;
-    current_range = 0;
-    while (cpy)
-    {
-        if (node->index == cpy->index + 1)
-        {
-            node->target_pos = i;
-            return ;
-        }
-	current_range = cpy->index - node->index;
-        if (current_range < range && current_range > 0)
-        {
-            node->target_pos = i;
-            range = cpy->index - node->index;  
-        }
-        i++;
-        cpy = cpy->next;
-    }
+	cpy = *stack_a;
+	i = 0;
+	range = cpy->index - node->index;
+	current_range = 0;
+	target_index = cpy->index;
+	while (cpy)
+	{
+		if (node->index == cpy->index + 1)
+		{
+			node->target_pos = i;
+			target_index = cpy->index;
+			return (cpy->index);
+		}
+		current_range = cpy->index - node->index;
+		if (current_range < range && current_range >= 0)
+		{
+			node->target_pos = i;
+			range = cpy->index - node->index;  
+		}
+		i++;
+		cpy = cpy->next;
+	}
+	return (cpy->index);
 }
 
 void    set_stack_a_cost(t_stack **stack_a, t_stack *node)

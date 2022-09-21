@@ -75,9 +75,9 @@ void    create_stack(t_stack **stack_a, t_data *data);
 void    set_final_index_values(t_stack **stack_a);
 void    set_nodes_values(t_stack **stack_a, t_data *data);
 void    set_current_position(t_stack **stack);
-void    set_target_position(t_stack **stack_a, t_stack *node);
 void    set_stack_a_cost(t_stack **stack_a, t_stack *node);
 void    set_stack_b_cost(t_stack **stack_b, t_stack *node);
+int	set_target_position(t_stack **stack_a, t_stack *node);
 
 
 //           FREE
