@@ -15,8 +15,8 @@
 void	sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 {
 	t_stack		*node;
-	t_stack		*a_node;
-	t_stack		*b_node;
+//	t_stack		*a_node;
+//	t_stack		*b_node;
 	int		stack_a_size;
 	int		stack_b_size;
 
@@ -27,6 +27,7 @@ void	sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 	sort_3(stack_a);
 	while (*stack_b)
 	{
+/*
 		//TO DO RESET COST
 		a_node = *stack_a;
 		b_node = *stack_b;
@@ -40,22 +41,22 @@ void	sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 			set_stack_b_cost(stack_b, b_node);
 			b_node = b_node->next;
 		}
+*/
 		set_current_position(stack_b);
-
-	 	node = cheapest_node(stack_b);	
+		
+	 	node = cheapest_node(stack_b);
+	
 		rotate_til_node_is_first(stack_b, node->index, node->current_pos, stack_b_size);
-		rotate_til_node_is_first(stack_a, set_target_position(stack_a, node), node->current_pos, stack_a_size);
+		rotate_a_to_take_b_node(stack_a, node);
 		push(stack_b, stack_a);
 		write(1, "pa\n", 3);
 	}
 //	rotate_til_node_is_first(stack_b, node->index,
 //		node->current_pos, stack_b_size);
-
 //	printf("cheapest node: value %d, index %d\n", node->value, node->index);
 //	printf("cost : A %d, B %d\n", node->cost_a, node->cost_b);
 //	(void)stack_b;
 //	(void)data;
-
 //	sort_a(stack_a, data);
 }
 
@@ -160,6 +161,7 @@ t_stack		*cheapest_node(t_stack **stack_b)
 
 void	rotate_a_to_take_b_node(t_stack **stack_a, t_stack *node)
 {
+//	printf("A COST: %d\n", node->cost_a);
 	while (node->cost_a)
 	{
 		if (node->cost_a > 0)

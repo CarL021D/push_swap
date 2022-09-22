@@ -52,6 +52,7 @@ int     presort_divider(int count);
 void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data);
 void    sort_a(t_stack **stack_a, t_data *data);
 void    rotate_til_node_is_first(t_stack **stack, int index, int pos, int size);
+void    rotate_a_to_take_b_node(t_stack **stack_a, t_stack *node);
 t_stack         *cheapest_node(t_stack **stack_b);
 
 //           INSTRUCTIONS
@@ -75,9 +76,9 @@ void    create_stack(t_stack **stack_a, t_data *data);
 void    set_final_index_values(t_stack **stack_a);
 void    set_nodes_values(t_stack **stack_a, t_data *data);
 void    set_current_position(t_stack **stack);
+void    set_target_position(t_stack **stack_a, t_stack **stack_b);
 void    set_stack_a_cost(t_stack **stack_a, t_stack *node);
-void    set_stack_b_cost(t_stack **stack_b, t_stack *node);
-int	set_target_position(t_stack **stack_a, t_stack *node);
+void    set_stack_b_cost(t_stack **stack_b);
 
 
 //           FREE

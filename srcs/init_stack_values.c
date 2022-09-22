@@ -65,8 +65,40 @@ void    set_current_position(t_stack **stack)
     }
 }
 
-int	set_target_position(t_stack **stack_a, t_stack *node)
+void	set_target_position(t_stack **stack_a, t_stack **stack_b)
 {
+	t_stack		*a_node;
+	t_stack		*b_node;
+	int		targ_pos;
+	int		range;
+	
+	b_node = *stack_b;
+	if ((*stack_a)->index - (*stack_b)->index)
+		range = (*stack_a)->index - (*stack_b)->index;
+	while (b_node)
+	{
+		a_node = *stack_a;
+		targ_pos = 0;
+		while (a_node)
+		{
+			if (b_node->index + 1 == a_node->index)	
+			{
+				b_node->target_pos = targ_pos;
+				break;
+			}
+			if (a_node->index - b_node->index < range \
+			&& a_node->index - b_node->index > 0)
+			{
+				b_node->target_pos = targ_pos;
+				range = a_node->index - b_node->index;
+			}
+			targ_pos++;
+		}
+		b_node = b_node->next;
+	}
+
+
+/*
 	t_stack		*cpy;
 	int		i;
 	int		range;
@@ -77,17 +109,15 @@ int	set_target_position(t_stack **stack_a, t_stack *node)
 	i = 0;
 	range = cpy->index - node->index;
 	current_range = 0;
-	target_index = cpy->index;
 	while (cpy)
 	{
-		if (node->index == cpy->index + 1)
+		if (node->index + 1 == cpy->index)
 		{
 			node->target_pos = i;
-			target_index = cpy->index;
-			return (cpy->index);
+			return ;
 		}
 		current_range = cpy->index - node->index;
-		if (current_range < range && current_range >= 0)
+		if (current_range < range && current_range > 0)
 		{
 			node->target_pos = i;
 			range = cpy->index - node->index;  
@@ -95,67 +125,89 @@ int	set_target_position(t_stack **stack_a, t_stack *node)
 		i++;
 		cpy = cpy->next;
 	}
-	return (cpy->index);
+*/
 }
 
-void    set_stack_a_cost(t_stack **stack_a, t_stack *node)
+void    set_stack_a_cost(t_stack **stack_b, int a_size)
 {
-    t_stack     *cpy;
-    int         i;
-    int         mid;
+	t_stack     *b_node;
 
-    cpy = *stack_a;
-    mid = lst_size(stack_a) / 2;    
-    if (node->current_pos <= (mid - 1))
-        node->cost_a = node->target_pos;
-    else
-    {
-        i = 0;
-        while (i < node->target_pos)
-        {
-            i++;
-            cpy = cpy->next;
-        }
-        i = 1;
-        while (cpy)
-        {
-            i++;
-            cpy = cpy->next;
-        }
-        i *= -1;
-        node->cost_a = i;
-    }
-    printf("cost_a: %d\n", node->cost_a);
+	b_node = *stack_b;
+	while (b_node)
+	{
+		if (b_node->target_pos <= a_size / 2)
+			b_node->cost_a = target_pos;
+		else
+			b_node->cost_a = a_size - target_pos;
+		b_node = b_node->next;
+	}
+
+/*
+	b_node = *stack_b;
+	mid = lst_size(stack_b) / 2;
+	while (b_node)
+	{
+		if (cpy->current_pos < mid)
+			cpy->cost_a = cpy->target_pos;
+		else
+		{
+			tmp = *stack_b;
+			i = 0;
+			while (i < cpy->target_pos)
+			{
+				i++;
+				tmp = tmp->next;
+			}
+			i = 0;
+			while (tmp->next)
+			{
+				i++;
+				tmp = tmp->next;
+			}
+			i++;
+        		i *= -1;
+			node->cost_a = i;
+		}
+		b_node = b_node->next;
+	}
+	printf("cost_a: %d\n", node->cost_a);
+*/
 }
 
-void    set_stack_b_cost(t_stack **stack_b, t_stack *node)
+void    set_stack_b_cost(t_stack **stack_b, int b_size)
 {
-    t_stack     *cpy;
-    int         cost;
-    int         mid;
+	t_stack     *b_node;
+	t_stack     *cpy;
+	int         cost;
+//  	int         mid;
 
-	cost = 0;
-	mid = (lst_size(stack_b) / 2);
-	if (node->current_pos <= mid)
+//	mid = (lst_size(stack_b) / 2);
+	b_node = *stack_b;
+	while (b_node)
 	{
 		cpy = *stack_b;
-		while (cpy->index != node->index)
+		cost = 0;
+//		if (node->current_pos <= b_size / 2)
+//		{
+//			cpy = *stack_b;
+			while (cpy->index != b_node->index)
+			{
+				cost++;
+				cpy = cpy->next;
+			}
+//		}
+		if (b_node->current_pos > b_size / 2)
 		{
+			cost = 0;
+			while (cpy->next)
+			{
+				cost++;
+				cpy = cpy->next;
+			}
 			cost++;
-			cpy = cpy->next;
+        		cost *= -1;
 		}
 	}
-	else
-	{
-		cpy = node;
-		while (cpy->next)
-		{
-			cost++;
-			cpy = cpy->next;
-		}
-		cost++;
-        	cost *= -1;
-	}
-	node->cost_b = cost;
+	b_node->cost_b = cost;
 	printf("cost_b: %d\n", node->cost_b);
 }
