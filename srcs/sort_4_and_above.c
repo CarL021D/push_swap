@@ -14,43 +14,47 @@
 
 void	sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 {
-	t_stack		*node;
+//	t_stack		*node;
 //	t_stack		*a_node;
 //	t_stack		*b_node;
-	int		stack_a_size;
-	int		stack_b_size;
+	int		a_size;
+	int		b_size;
 
-	stack_a_size = 3;
-	stack_b_size = (data->values_count - 3);
-	
+	a_size = 3;
+	b_size = (data->values_count - 3);
 	push_presort_to_b(stack_a, stack_b, data);   
-	sort_3(stack_a);
-	while (*stack_b)
-	{
+//	sort_3(stack_a);
+
 /*
-		//TO DO RESET COST
-		a_node = *stack_a;
-		b_node = *stack_b;
-		while (a_node)
-		{
-			set_stack_a_cost(stack_a, a_node);
-			a_node = a_node->next;
-		}
-		while (b_node)
-		{
-			set_stack_b_cost(stack_b, b_node);
-			b_node = b_node->next;
-		}
+	t_stack         *a_node;
+	a_node = create_node(data);
+        a_node->index = 11;
+        a_node->value = 11;
+	a_node->next = *stack_a;
+	*stack_a = a_node;
 */
+
+	set_current_position(stack_b);
+	set_target_position(stack_a, stack_b);
+	set_stack_a_cost(stack_b, a_size);
+	set_stack_b_cost(stack_b, b_size);
+//	while (*stack_b)
+//	{
 		set_current_position(stack_b);
-		
-	 	node = cheapest_node(stack_b);
-	
-		rotate_til_node_is_first(stack_b, node->index, node->current_pos, stack_b_size);
-		rotate_a_to_take_b_node(stack_a, node);
+		set_target_position(stack_a, stack_b);
+		set_stack_a_cost(stack_b, a_size);
+		set_stack_b_cost(stack_b, b_size);
+/*	 	node = cheapest_node(stack_b);
+		rotate_til_node_is_first(stack_b, node->index, node->current_pos, b_size);
+		rotate_a_to_take_b_node(stack_a, node->cost_a);
 		push(stack_b, stack_a);
 		write(1, "pa\n", 3);
+		a_size++;
+		b_size--;
 	}
+	sort_a(stack_a, data);
+*/
+
 //	rotate_til_node_is_first(stack_b, node->index,
 //		node->current_pos, stack_b_size);
 //	printf("cheapest node: value %d, index %d\n", node->value, node->index);
@@ -74,19 +78,6 @@ int	presort_divider(int count)
 		divider = count / 20;
 	return (divider);
 }
-
-// void    push_to_b(t_stack **stack_a, t_stack **stack_b, t_stack *cpy, int size)
-// {
-    
-// }
-
-// void    push_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
-// {
-//     t_stack *cpy;
-
-//     cpy = *stack_a;
-    
-// }
 
 void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
 {
@@ -123,9 +114,6 @@ void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
 	}
 }
 
-
-
-
 int	total_positive_cost(int a_cost, int b_cost)
 {
 	int	total_pos_cost;
@@ -141,40 +129,43 @@ int	total_positive_cost(int a_cost, int b_cost)
 t_stack		*cheapest_node(t_stack **stack_b)
 {
 	t_stack		*node_to_push;
-	t_stack		*cpy;
-	int		node_total_cost;
-	int		cpy_total_cost;      
+	t_stack		*b_node;
+	int		saved_total_cost;
+	int		b_node_cost;
 
 	node_to_push = *stack_b;
-	cpy = *stack_b;
-	while (cpy)
+	b_node = *stack_b;
+	saved_total_cost = total_positive_cost((*stack_b)->cost_a,
+		(*stack_b)->cost_b);
+	while (b_node)
 	{
-		node_total_cost = total_positive_cost(node_to_push->cost_a, \
-		node_to_push->cost_b);
-		cpy_total_cost = total_positive_cost(cpy->cost_a, cpy->cost_b);
-		if (node_total_cost > cpy_total_cost)
-			node_to_push = cpy;
-		cpy = cpy->next;
+		b_node_cost = total_positive_cost(b_node->cost_a, b_node->cost_b);
+		if (b_node_cost < saved_total_cost)
+		{
+			saved_total_cost = b_node_cost;
+			node_to_push = b_node;	
+		}
+		b_node = b_node->next;
 	}
 	return (node_to_push);
 }
 
-void	rotate_a_to_take_b_node(t_stack **stack_a, t_stack *node)
+void	rotate_a_to_take_b_node(t_stack **stack_a, int cost_a)
 {
 //	printf("A COST: %d\n", node->cost_a);
-	while (node->cost_a)
+	while (cost_a)
 	{
-		if (node->cost_a > 0)
+		if (cost_a > 0)
 		{
 			rotate(stack_a);
 			write(1, "ra\n", 3);
-			node->cost_a--;
+			cost_a--;
 		}
 		else
 		{
 			reverse_rotate(stack_a);
 			write(1, "rra\n", 3);
-			node->cost_a++; 
+			cost_a++; 
 		}
 	}
 }

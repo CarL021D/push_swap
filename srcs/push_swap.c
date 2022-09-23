@@ -58,6 +58,8 @@ int main(int ac, char **av)
     while (stack_b)
     {
         printf("%d -> %d\n", stack_b->index, stack_b->value);
+        printf("Target position  >> %d\n", stack_b->target_pos);
+        printf("A_cost: %d - B_cost: %d\n\n", stack_b->cost_a, stack_b->cost_b);
         stack_b = stack_b->next;
     }
 }

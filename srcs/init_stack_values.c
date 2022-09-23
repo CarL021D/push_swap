@@ -72,27 +72,26 @@ void	set_target_position(t_stack **stack_a, t_stack **stack_b)
 	int		targ_pos;
 	int		range;
 	
+	a_node = *stack_a; 
 	b_node = *stack_b;
-	if ((*stack_a)->index - (*stack_b)->index)
-		range = (*stack_a)->index - (*stack_b)->index;
+	while (b_node->index > a_node->index)
+		a_node = a_node->next;
+	range = a_node->index - b_node->index;
 	while (b_node)
 	{
 		a_node = *stack_a;
 		targ_pos = 0;
 		while (a_node)
 		{
-			if (b_node->index + 1 == a_node->index)	
-			{
-				b_node->target_pos = targ_pos;
-				break;
-			}
-			if (a_node->index - b_node->index < range \
-			&& a_node->index - b_node->index > 0)
+			if (a_node->index - b_node->index > 0 \
+			&& a_node->index - b_node->index < range)
 			{
 				b_node->target_pos = targ_pos;
 				range = a_node->index - b_node->index;
+				break;
 			}
 			targ_pos++;
+			a_node = a_node->next;
 		}
 		b_node = b_node->next;
 	}
@@ -136,9 +135,9 @@ void    set_stack_a_cost(t_stack **stack_b, int a_size)
 	while (b_node)
 	{
 		if (b_node->target_pos <= a_size / 2)
-			b_node->cost_a = target_pos;
+			b_node->cost_a = b_node->target_pos;
 		else
-			b_node->cost_a = a_size - target_pos;
+			b_node->cost_a = a_size - b_node->target_pos;
 		b_node = b_node->next;
 	}
 
@@ -176,6 +175,19 @@ void    set_stack_a_cost(t_stack **stack_b, int a_size)
 
 void    set_stack_b_cost(t_stack **stack_b, int b_size)
 {
+
+	t_stack     *b_node;
+
+	b_node = *stack_b;
+	while (b_node)
+	{
+		if (b_node->current_pos <= b_size / 2)
+			b_node->cost_b = b_node->current_pos;
+		else
+			b_node->cost_b = b_size - b_node->current_pos;
+		b_node = b_node->next;
+	} 
+/*
 	t_stack     *b_node;
 	t_stack     *cpy;
 	int         cost;
@@ -207,7 +219,9 @@ void    set_stack_b_cost(t_stack **stack_b, int b_size)
 			cost++;
         		cost *= -1;
 		}
+		b_node->cost_b = cost;
+		printf("cost_b: %d\n", node->cost_b);
+		b_node = b_node->next;
 	}
-	b_node->cost_b = cost;
-	printf("cost_b: %d\n", node->cost_b);
+*/
 }
