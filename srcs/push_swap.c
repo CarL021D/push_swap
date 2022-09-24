@@ -24,21 +24,21 @@ void    sort_exec(t_stack **stack_a, t_stack **stack_b, t_data *data)
 
 int main(int ac, char **av)
 {
-    t_stack     *stack_a;
-    t_stack     *stack_b;
-    t_data      data;
-    
-    stack_a = NULL;
-    stack_b = NULL;
-    if (ac < 3 || !args_are_num(av))
-        exit(EXIT_FAILURE);
-    set_values_int_tab(&data, av, ac);
-    check_values_range(&data);
-    exit_if_values_already_sorted(&data);
-    check_duplicate(&data);
-    init_stack_a(&stack_a, &data);
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	t_data		data;
 
-    sort_exec(&stack_a, &stack_b, &data);
+	stack_a = NULL;
+	stack_b = NULL;
+	if (ac < 3 || !args_are_num(av))
+		exit(EXIT_FAILURE);
+	set_values_int_tab(&data, av, ac);
+	check_values_range(&data);
+	exit_if_values_already_sorted(&data);
+	check_duplicate(&data);
+	init_stack_a(&stack_a, &data);
+
+	sort_exec(&stack_a, &stack_b, &data);
     
     // TO DO
     // free(data.values_arr);
@@ -46,8 +46,6 @@ int main(int ac, char **av)
     
 
     // PRINT STACKS
-    printf("\nA\n\n");
-    // push(&stack_a, &stack_b);
     while (stack_a)
     {
         printf("%d -> %d\n", stack_a->index, stack_a->value);
@@ -58,7 +56,6 @@ int main(int ac, char **av)
     while (stack_b)
     {
         printf("%d -> %d\n", stack_b->index, stack_b->value);
-        printf("Target position  >> %d\n", stack_b->target_pos);
         printf("A_cost: %d - B_cost: %d\n\n", stack_b->cost_a, stack_b->cost_b);
         stack_b = stack_b->next;
     }

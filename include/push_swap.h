@@ -26,7 +26,6 @@ typedef struct s_stack
 	int         value;
 	int         index;
 	int         current_pos;
-	int         target_pos;
 	int         cost_a;
 	int         cost_b;
 	struct s_stack     *next;
@@ -49,12 +48,13 @@ void    sort_3_instructions(t_stack **stack_a, int *tab);
 void    sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data);
 
 //           SORT UTILS
+t_stack         *cheapest_node(t_stack **stack_b);
 int     presort_divider(int count);
+int     first_targ_pos_value(t_stack **stack_a, int index);
 void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data);
 void    sort_a(t_stack **stack_a, t_data *data);
 void    rotate_til_node_is_first(t_stack **stack, int index, int pos, int size);
 void    rotate_a_to_take_b_node(t_stack **stack_a, int cost_a);
-t_stack         *cheapest_node(t_stack **stack_b);
 
 //           INSTRUCTIONS
 void    rotate(t_stack **stack);
@@ -77,10 +77,9 @@ void    create_stack(t_stack **stack_a, t_data *data);
 void    set_final_index_values(t_stack **stack_a);
 void    set_nodes_values(t_stack **stack_a, t_data *data);
 void    set_current_position(t_stack **stack);
-void    set_target_position(t_stack **stack_a, t_stack **stack_b);
-void    set_stack_a_cost(t_stack **stack_a, int a_size);
-void    set_stack_b_cost(t_stack **stack_b, int b_size);
-
+void	set_b_node_a_cost(t_stack **stack_a, t_stack **stack_b,  int a_size);
+void    set_b_node_b_cost(t_stack **stack_b, int b_size);
+int     total_positive_cost(int a_cost, int b_cost);
 
 //           FREE
 void    free_tab_and_exit(t_data *data);
