@@ -38,56 +38,6 @@ void	sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 	sort_a(stack_a, data);
 }
 
-int	presort_divider(int count)
-{
-	int	divider;
-
-	if (count <= 20)
-		divider = (count / 3);
-	else if (count <= 50)
-		divider = count / 5;
-	else if (count <= 150)
-		divider = count / 10;
-	else
-		divider = count / 20;
-	return (divider);
-}
-
-void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
-{
-	t_stack		*cpy;
-	int		divider;
-	int		range;
-	int		loop;
-	int     stack_size;
-
-	divider = presort_divider(data->values_count);
-	range = divider;
-	stack_size = lst_size(stack_a);
-	while (range <= data->values_count + 3)
-	{
-		cpy = *stack_a;
-		loop = 0;
-		while (cpy && (loop < divider))
-		{
-			if (cpy->index < range && cpy->index != data->values_count - 1 \
-			&& cpy->index != data->values_count - 2 && cpy->index != data->values_count - 3)
-			{
-				rotate_til_node_is_first(stack_a, cpy->index, cpy->current_pos ,stack_size);
-				push(stack_a, stack_b);
-				write(1, "pb\n", 3);
-				stack_size--;
-                		set_current_position(stack_a);
-                		loop++;
-				cpy = *stack_a;
-			}
-			else
-            			cpy = cpy->next;
-		}
-		range += divider;
-	}
-}
-
 t_stack		*cheapest_node(t_stack **stack_b)
 {
 	t_stack		*node_to_push;

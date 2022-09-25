@@ -12,6 +12,14 @@ int     total_positive_cost(int a_cost, int b_cost)
 	return (total_pos_cost);
 }
 
+void	set_a_cost(t_stack *b_node, int index, int a_size)
+{
+	if (index <= a_size / 2)
+		b_node->cost_a = index;
+	else    
+ 		b_node->cost_a = -(a_size - index);
+}
+
 void    set_b_node_a_cost(t_stack **stack_a, t_stack **stack_b, int a_size)
 {
         t_stack         *a_node;
@@ -31,10 +39,12 @@ void    set_b_node_a_cost(t_stack **stack_a, t_stack **stack_b, int a_size)
                                 && a_node->index - b_node->index > 0)
                         {
                                 range = a_node->index - b_node->index;
-                                if (i <= a_size / 2)
-                                        b_node->cost_a = i;
-                                else
-                                        b_node->cost_a = -(a_size - i);
+				set_a_cost(b_node, i, a_size);
+
+//                                if (i <= a_size / 2)
+//                                       b_node->cost_a = i;
+//                              else
+//                                        b_node->cost_a = -(a_size - i);
                         }
                         i++;
                         a_node = a_node->next;

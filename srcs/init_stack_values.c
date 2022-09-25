@@ -15,19 +15,19 @@
 void    set_final_index_values(t_stack **stack_a)
 {
 	t_stack		*node_to_set;
-	t_stack		*copy;
+	t_stack		*a_node;
 	int		pos;
 
 	node_to_set = *stack_a;
 	while (node_to_set)
 	{
-		copy = *stack_a;
+		a_node = *stack_a;
 		pos = 0;
-		while (copy)
+		while (a_node)
 		{
-			if (copy->value < node_to_set->value)
+			if (a_node->value < node_to_set->value)
 				pos++;
-			copy = copy->next;
+			a_node = a_node->next;
 		}
 		node_to_set->index = pos;
 		node_to_set = node_to_set->next;
