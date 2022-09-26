@@ -51,11 +51,13 @@ void    sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data);
 t_stack         *cheapest_node(t_stack **stack_b);
 int     presort_divider(int count);
 int     first_targ_pos_value(t_stack **stack_a, int index);
+int     is_not_1_of_3_highest_node(t_data *data, int node_index);
 void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data);
 void    presort_push(t_stack **a, t_stack **b, t_stack *node, int size);
 void    sort_a(t_stack **stack_a, t_data *data);
-void    rotate_til_node_is_first(t_stack **stack, int index, int pos, int size);
+void    rotate_til_node_is_first(t_stack **stack, t_stack *node, int size);
 void    rotate_a_to_take_b_node(t_stack **stack_a, int cost_a);
+void    rr_or_rrr_if_possible(t_stack **stack_a, t_stack **stack_b, t_stack *node);
 
 //           INSTRUCTIONS
 void    rotate(t_stack **stack);

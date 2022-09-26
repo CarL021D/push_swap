@@ -109,15 +109,6 @@ void	rotate_a_to_take_b_node(t_stack **stack_a, int cost_a)
 
 void	rotate_til_node_is_first(t_stack **stack, t_stack *node, int size)
 {
-/*
-	(void)size;
-	while (node->cost_b)
-	{
-		rotate(stack);
-		write(1, "rb\n", 3);
-		node->cost_b--;
-	}
-*/
 	while ((*stack)->index != node->index)
 	{
 		if (node->current_pos <= (size / 2))
@@ -131,19 +122,18 @@ void	rotate_til_node_is_first(t_stack **stack, t_stack *node, int size)
 			write(1, "rrb\n", 4); 
 		}
 	}
-
 }
 
 void    sort_a(t_stack **stack_a, t_data *data)
 {
-	t_stack		*node;
+	t_stack		*a_node;
 	int		rotate_count;
 
-	node = *stack_a;
+	a_node = *stack_a;
 	rotate_count = 0;
-	while (node->index != 0)
+	while (a_node->index != 0)
 	{
-		node = node->next;
+		a_node = a_node->next;
 		rotate_count++;
 	}
 	while ((*stack_a)->index != 0)

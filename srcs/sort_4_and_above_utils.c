@@ -35,7 +35,6 @@ int     presort_divider(int count)
 void	presort_push(t_stack **a, t_stack **b, t_stack *node, int size)
 {
 	rotate_til_node_is_first(a, node, size);
-//	rotate_til_node_is_first(a, node->index, node->current_pos , size);
         push(a, b);
        	write(1, "pb\n", 3);
         set_current_position(a);

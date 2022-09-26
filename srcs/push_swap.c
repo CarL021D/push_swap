@@ -37,16 +37,14 @@ int main(int ac, char **av)
 	exit_if_values_already_sorted(&data);
 	check_duplicate(&data);
 	init_stack_a(&stack_a, &data);
-
 	sort_exec(&stack_a, &stack_b, &data);
     
     // TO DO
     // free(data.values_arr);
     // free(data.tab_3);
     
-
     // PRINT STACKS
-    printf("\na\n");
+    printf("\n\na\n");
     while (stack_a)
     {
         printf("%d -> %d\n", stack_a->index, stack_a->value);
@@ -57,7 +55,6 @@ int main(int ac, char **av)
     while (stack_b)
     {
         printf("%d -> %d\n", stack_b->index, stack_b->value);
-//        printf("A_cost: %d - B_cost: %d\n\n", stack_b->cost_a, stack_b->cost_b);
         stack_b = stack_b->next;
     }
 }
