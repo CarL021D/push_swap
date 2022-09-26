@@ -40,11 +40,10 @@ void    set_b_node_a_cost(t_stack **stack_a, t_stack **stack_b, int a_size)
                         {
                                 range = a_node->index - b_node->index;
 				set_a_cost(b_node, i, a_size);
-
-//                                if (i <= a_size / 2)
-//                                       b_node->cost_a = i;
-//                              else
-//                                        b_node->cost_a = -(a_size - i);
+                                if (i <= a_size / 2)
+                                       b_node->cost_a = i;
+                              else
+                                        b_node->cost_a = -(a_size - i);
                         }
                         i++;
                         a_node = a_node->next;
@@ -56,6 +55,20 @@ void    set_b_node_a_cost(t_stack **stack_a, t_stack **stack_b, int a_size)
 void    set_b_node_b_cost(t_stack **stack_b, int b_size)
 {
 
+/*
+        t_stack		*b_node;
+	int		i;
+
+	(void)b_size;
+        b_node = *stack_b;
+	i = 0;
+	while (b_node)
+	{
+		b_node->cost_b = i;
+		i++;
+		b_node = b_node->next;
+	}
+*/
         t_stack     *b_node;
 
         b_node = *stack_b;

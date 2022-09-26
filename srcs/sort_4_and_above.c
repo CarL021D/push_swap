@@ -12,6 +12,31 @@
 
 #include "../include/push_swap.h"
 
+void	rr_or_rrr_if_possible(t_stack **stack_a, t_stack **stack_b, t_stack *node)
+{
+	if (node->cost_a > 0 && node->cost_b > 0)
+	{
+		while (node->cost_a > 0 && (*stack_b)->index != node->index)
+		{
+			rotate(stack_a);
+			rotate(stack_b);
+			write(1, "rr\n", 3);
+			node->cost_a--;
+		}
+	}
+	if (node->cost_a < 0 && node->cost_b < 0)
+	{	
+		while (node->cost_a < 0 && (*stack_b)->index != node->index)
+		{
+			printf("22222");
+			reverse_rotate(stack_a);
+			reverse_rotate(stack_b);
+			write(1, "rrr\n", 4);
+			node->cost_a++;
+		}
+	}	
+}
+
 void	sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 {
 	t_stack		*node;
@@ -28,7 +53,8 @@ void	sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 		set_b_node_a_cost(stack_a, stack_b, a_size);
 		set_b_node_b_cost(stack_b, b_size);
 	 	node = cheapest_node(stack_b);
-		rotate_til_node_is_first(stack_b, node->index, node->current_pos, b_size);
+		rr_or_rrr_if_possible(stack_a, stack_b, node);
+		rotate_til_node_is_first(stack_b, node, b_size);
 		rotate_a_to_take_b_node(stack_a, node->cost_a);
 		push(stack_b, stack_a);
 		write(1, "pa\n", 3);
@@ -81,21 +107,31 @@ void	rotate_a_to_take_b_node(t_stack **stack_a, int cost_a)
 	}
 }
 
-void	rotate_til_node_is_first(t_stack **stack, int index, int pos, int size)
+void	rotate_til_node_is_first(t_stack **stack, t_stack *node, int size)
 {
-	while ((*stack)->index != index)
+/*
+	(void)size;
+	while (node->cost_b)
 	{
-		if (pos <= (size / 2))
+		rotate(stack);
+		write(1, "rb\n", 3);
+		node->cost_b--;
+	}
+*/
+	while ((*stack)->index != node->index)
+	{
+		if (node->current_pos <= (size / 2))
 		{
 			rotate(stack);
-			write(1, "ra\n", 3);
+			write(1, "rb\n", 3);
 		}
 		else
 		{
 			reverse_rotate(stack);
-			write(1, "rra\n", 4); 
+			write(1, "rrb\n", 4); 
 		}
 	}
+
 }
 
 void    sort_a(t_stack **stack_a, t_data *data)
