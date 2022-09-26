@@ -1,16 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_node_cost.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 18:03:04 by caboudar          #+#    #+#             */
+/*   Updated: 2022/09/26 18:09:48 by caboudar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
-
-int     total_positive_cost(int a_cost, int b_cost)
-{       
-	int	total_pos_cost;
-
-	if (a_cost < 0)
-		a_cost *= -1;
-	if (b_cost < 0)
-		b_cost *= -1;
-	total_pos_cost = a_cost + b_cost;
-	return (total_pos_cost);
-}
 
 void	set_a_cost(t_stack *b_node, int index, int a_size)
 {

@@ -1,70 +1,93 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_4_and_above_utils.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 18:02:41 by caboudar          #+#    #+#             */
+/*   Updated: 2022/09/26 18:20:09 by caboudar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
-
-int	is_not_1_of_3_highest_node(t_data *data, int node_index)
-{
-	if (node_index != data->values_count - 1
-		&& node_index != data->values_count - 2
-			&& node_index != data->values_count - 3)
-		return (1);
-	return (0);
-}
-
-int     presort_divider(int count)
-{       
-        int     divider;
-       
-        if (count <= 150)
-                divider = count / 2;
-        else
-                divider = count / 20;
-        return (divider);
- 
-/*
-        if (count <= 20)
-                divider = (count / 3);
-        else if (count <= 50)
-                divider = count / 5;
-        else if (count <= 150)
-                divider = count / 2;
-        else    
-                divider = count / 20;
-        return (divider);
-*/
-}
 
 void	presort_push(t_stack **a, t_stack **b, t_stack *node, int size)
 {
-	rotate_til_node_is_first(a, node, size);
+	rotate_til_b_node_is_first(a, node, size);
         push(a, b);
        	write(1, "pb\n", 3);
         set_current_position(a);
 }
 
-void    push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
+int     total_positive_cost(int a_cost, int b_cost)
 {       
-        t_stack         *a_node;
-        int             range;
-        int		stack_size;
-	int		loop;
-        
-        range = presort_divider(data->values_count);
-        stack_size =  data->values_count;
-        while (range <= data->values_count + 3)
-        {       
-                a_node = *stack_a;
-		loop = 0;
-                while (a_node && loop < presort_divider(data->values_count))
-		{       
-                        if (a_node->index < range \
-			&& is_not_1_of_3_highest_node(data, a_node->index))
-                        {
-				presort_push(stack_a, stack_b, a_node, stack_size);
-                                stack_size--;
-                                a_node = *stack_a;
-                        }
-                        else    
-                                a_node = a_node->next;
-                }
-		range += presort_divider(data->values_count);
-        }
+	int	total_pos_cost;
+
+	if (a_cost < 0)
+		a_cost *= -1;
+	if (b_cost < 0)
+		b_cost *= -1;
+	total_pos_cost = a_cost + b_cost;
+	return (total_pos_cost);
+}
+
+t_stack		*cheapest_node(t_stack **stack_b)
+{
+	t_stack		*node_to_push;
+	t_stack		*b_node;
+	int		saved_total_cost;
+	int		b_node_cost;
+
+	node_to_push = *stack_b;
+	b_node = *stack_b;
+	saved_total_cost = total_positive_cost((*stack_b)->cost_a,
+		(*stack_b)->cost_b);
+	while (b_node)
+	{
+		b_node_cost = total_positive_cost(b_node->cost_a, b_node->cost_b);
+		if (b_node_cost < saved_total_cost)
+		{
+			saved_total_cost = b_node_cost;
+			node_to_push = b_node;	
+		}
+		b_node = b_node->next;
+	}
+	return (node_to_push);
+}
+
+void	rotate_a_to_take_b_node(t_stack **stack_a, int cost_a)
+{
+	while (cost_a)
+	{
+		if (cost_a > 0)
+		{
+			rotate(stack_a);
+			write(1, "ra\n", 3);
+			cost_a--;
+		}
+		else
+		{
+			reverse_rotate(stack_a);
+			write(1, "rra\n", 4);
+			cost_a++; 
+		}
+	}
+}
+
+void	rotate_til_b_node_is_first(t_stack **stack, t_stack *node, int size)
+{
+	while ((*stack)->index != node->index)
+	{
+		if (node->current_pos <= (size / 2))
+		{
+			rotate(stack);
+			write(1, "rb\n", 3);
+		}
+		else
+		{
+			reverse_rotate(stack);
+			write(1, "rrb\n", 4); 
+		}
+	}
 }

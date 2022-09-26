@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 10:51:52 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/19 23:08:37 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:59:08 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int     is_not_1_of_3_highest_node(t_data *data, int node_index);
 void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data);
 void    presort_push(t_stack **a, t_stack **b, t_stack *node, int size);
 void    sort_a(t_stack **stack_a, t_data *data);
-void    rotate_til_node_is_first(t_stack **stack, t_stack *node, int size);
+void    rotate_til_b_node_is_first(t_stack **stack, t_stack *node, int size);
 void    rotate_a_to_take_b_node(t_stack **stack_a, int cost_a);
 void    rr_or_rrr_if_possible(t_stack **stack_a, t_stack **stack_b, t_stack *node);
 
