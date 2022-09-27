@@ -68,14 +68,14 @@ all:		$(NAME)
 
 $(NAME):	$(O_DIR) $(OBJS)
 			@$(CC) $(CFLAGS) $(OBJS) -o $@
-			@echo "${GREEN}- compiling pipex executable${RESET}"
+			@echo "${GREEN}- compiling push_swap executable${RESET}"
 
 $(O_DIR)/%.o: $(C_DIR)/%.c
 			@$(CC) $(CFLAGS) $(CINCLUDES) -c $< -o $@
 
 $(O_DIR):
 			@$(MKDIR) $(O_DIR)
-			@echo "${GREEN}- creating pipex objects directory${RESET}"
+			@echo "${GREEN}- creating push_swap objects directory${RESET}"
 
 # ################################## #
 #                CLEAN               #
@@ -83,11 +83,11 @@ $(O_DIR):
 
 clean:
 			@$(RM) $(O_DIR)
-			@echo "${RED}- deleting pipex objects${RESET}"
+			@echo "${RED}- deleting push_swap objects${RESET}"
 
 fclean:		clean
 			@$(RM) $(NAME)
-			@echo "${RED}- delete pipex executable${RESET}"
+			@echo "${RED}- delete push_swap executable${RESET}"
 
 re:			fclean all
 
