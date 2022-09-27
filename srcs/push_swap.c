@@ -33,16 +33,14 @@ int main(int ac, char **av)
 	if (ac < 3 || !args_are_num(av))
 		exit(EXIT_FAILURE);
 	set_values_int_tab(&data, av, ac);
-	check_values_range(&data);
+	exit_if_values_out_of_range(&data);
 	exit_if_values_already_sorted(&data);
-	check_duplicate(&data);
+	exit_if_duplicates(&data);
 	init_stack_a(&stack_a, &data);
 	sort_exec(&stack_a, &stack_b, &data);
-    
-    // TO DO
-    // free(data.values_arr);
-    // free(data.tab_3);
-    
+	free_all(&stack_a, &data);
+
+/*    
     // PRINT STACKS
     printf("\n\na\n");
     while (stack_a)
@@ -57,4 +55,5 @@ int main(int ac, char **av)
         printf("%d -> %d\n", stack_b->index, stack_b->value);
         stack_b = stack_b->next;
     }
+*/
 }

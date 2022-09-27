@@ -35,8 +35,6 @@ typedef	struct s_data
 {
 	long long	*tab;
 	int		values_count;
-
-    
 }   t_data;
 
 
@@ -69,9 +67,9 @@ void    push(t_stack **stack_from, t_stack **stack_to);
 int     args_are_num(char **av);
 int     check_value_len(long long value);
 void    set_values_int_tab(t_data *data, char **av, int ac);
+void    exit_if_values_out_of_range(t_data *data);
 void    exit_if_values_already_sorted(t_data *data);
-void    check_duplicate(t_data *data);
-void    check_values_range(t_data *data);
+void    exit_if_duplicates(t_data *data);
 
 //           INIT LIST
 t_stack	*create_node(t_data *data);
@@ -86,7 +84,10 @@ void    set_b_node_b_cost(t_stack **stack_b, int b_size);
 int     total_positive_cost(int a_cost, int b_cost);
 
 //           FREE
+void    free_list(t_stack **stck_a);
 void    free_tab_and_exit(t_data *data);
+void    error_free_all(t_stack **stack_a, t_data *data);
+void    free_all(t_stack **stack_a, t_data *data);
 
 //           UTILS
 int		    lst_size(t_stack **lst);

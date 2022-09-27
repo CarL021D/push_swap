@@ -12,8 +12,21 @@
 
 #include "../include/push_swap.h"
 
-void    free_tab_and_exit(t_data *data)
+void	free_list(t_stack **stack_a)
 {
-    free(data->tab);
-    exit(EXIT_FAILURE);
+	t_stack         *a_node;
+
+        while (*stack_a)
+        {
+                a_node = (*stack_a)->next;
+                free(*stack_a);
+                *stack_a = a_node;
+	}
+}
+
+void	free_all(t_stack **stack_a, t_data *data)
+{
+	free_list(stack_a);
+	free(data->tab);
+	exit(EXIT_SUCCESS);
 }

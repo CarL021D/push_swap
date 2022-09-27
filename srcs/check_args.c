@@ -48,8 +48,7 @@ void    exit_if_values_already_sorted(t_data *data)
     }
     if (value_count == 0)
     {
-        // Printf
-        printf("sorted\n");
+        write(1, "Error\nSorted\n", 13);
         free_tab_and_exit(data);
     }
 }
@@ -69,7 +68,7 @@ int     check_value_len(long long value)
     return (i);
 }
 
-void    check_values_range(t_data *data)
+void    exit_if_values_out_of_range(t_data *data)
 {
     int     i;
     int     value_count;
@@ -82,14 +81,12 @@ void    check_values_range(t_data *data)
         value_len = check_value_len(data->tab[i]);
         if (value_len > 10)
         {
-            // Printf
-            printf("value len to long\n");
+            write(1, "Error\nValue len to long\n", 24);
             free_tab_and_exit(data);
         }
         if (data->tab[i] < INT_MIN || data->tab[i] > INT_MAX)
         {
-            // Printf
-            printf("out of range\n");
+            write(1, "Error\nOut of range\n", 19);
             free_tab_and_exit(data);
         }
         i++;
@@ -97,7 +94,7 @@ void    check_values_range(t_data *data)
     }
 }
 
-void    check_duplicate(t_data *data)
+void    exit_if_duplicates(t_data *data)
 {
     int     i;
     int     j;
@@ -110,8 +107,7 @@ void    check_duplicate(t_data *data)
         {
             if (data->tab[i] == data->tab[j])
             {
-                // Printf
-                printf("duplicate\n");
+                write(1, "Error\nDuplicate\n", 16);
                 free_tab_and_exit(data);
             }
             j++;
