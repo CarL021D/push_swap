@@ -25,8 +25,11 @@ int args_are_num(char **av)
             j++;
         while (av[i][j])
         {
-            if (av[i][j] < '0' || av[i][j] > '9')
-                return (FALSE);
+		if (av[i][j] < '0' || av[i][j] > '9')
+		{
+			write(1, "Error\nWrong type of characters\n", 31);
+                	return (FALSE);
+		}
             j++;
         }
         i++;
