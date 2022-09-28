@@ -24,6 +24,12 @@ void	free_list(t_stack **stack_a)
 	}
 }
 
+void    free_tab_and_exit(t_data *data)
+{
+	free(data->tab);
+	exit(EXIT_FAILURE);
+}
+
 void	free_all(t_stack **stack_a, t_data *data)
 {
 	free_list(stack_a);
