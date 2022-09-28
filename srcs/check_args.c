@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:26:22 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/19 20:21:41 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/29 00:36:09 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int args_are_num(char **av)
 		if (av[i][j] < '0' || av[i][j] > '9')
 		{
 			write(1, "Error\nWrong type of characters\n", 31);
-                	return (FALSE);
+                	return (ERROR);
 		}
             j++;
         }
         i++;
     }
-    return (TRUE);
+    return (SUCCESS);
 }
 
 void    exit_if_values_already_sorted(t_data *data)
@@ -49,11 +49,8 @@ void    exit_if_values_already_sorted(t_data *data)
         i++;
         value_count--;
     }
-    if (value_count == 0)
-    {
-        write(1, "Error\nSorted\n", 13);
-        free_tab_and_exit(data);
-    }
+    if (!value_count)
+        free_tab_and_exit(data, SUCCESS);
 }
 
 int     check_value_len(long long value)
@@ -85,12 +82,12 @@ void    exit_if_values_out_of_range(t_data *data)
         if (value_len > 10)
         {
             write(1, "Error\nValue len to long\n", 24);
-            free_tab_and_exit(data);
+            free_tab_and_exit(data, ERROR);
         }
         if (data->tab[i] < INT_MIN || data->tab[i] > INT_MAX)
         {
             write(1, "Error\nOut of range\n", 19);
-            free_tab_and_exit(data);
+            free_tab_and_exit(data, ERROR);
         }
         i++;
         value_count--;
@@ -111,7 +108,7 @@ void    exit_if_duplicates(t_data *data)
             if (data->tab[i] == data->tab[j])
             {
                 write(1, "Error\nDuplicate\n", 16);
-                free_tab_and_exit(data);
+                free_tab_and_exit(data, ERROR);
             }
             j++;
         }

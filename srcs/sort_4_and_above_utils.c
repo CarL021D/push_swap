@@ -6,19 +6,11 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:02:41 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/26 18:20:09 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:39:06 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-void	presort_push(t_stack **a, t_stack **b, t_stack *node, int size)
-{
-	rotate_til_b_node_is_first(a, node, size);
-        push(a, b);
-       	write(1, "pb\n", 3);
-        set_current_position(a);
-}
 
 int     total_positive_cost(int a_cost, int b_cost)
 {       
@@ -75,19 +67,49 @@ void	rotate_a_to_take_b_node(t_stack **stack_a, int cost_a)
 	}
 }
 
-void	rotate_til_b_node_is_first(t_stack **stack, t_stack *node, int size)
+void	rotate_node_to_1st(t_stack **stack, t_stack *node, int size, int id)
 {
 	while ((*stack)->index != node->index)
 	{
 		if (node->current_pos <= (size / 2))
 		{
 			rotate(stack);
-			write(1, "rb\n", 3);
+			if (id == 1)
+				write(1, "ra\n", 3);
+			else
+				write(1, "rb\n", 3);
 		}
 		else
 		{
 			reverse_rotate(stack);
-			write(1, "rrb\n", 4); 
+			if (id == 1)
+				write(1, "rra\n", 4);
+			else
+				write(1, "rrb\n", 4);
 		}
 	}
+}
+
+void	rr_or_rrr_if_possible(t_stack **stack_a, t_stack **stack_b, t_stack *node)
+{
+	if (node->cost_a > 0 && node->cost_b > 0)
+	{
+		while (node->cost_a > 0 && (*stack_b)->index != node->index)
+		{
+			rotate(stack_a);
+			rotate(stack_b);
+			write(1, "rr\n", 3);
+			node->cost_a--;
+		}
+	}
+	if (node->cost_a < 0 && node->cost_b < 0)
+	{	
+		while (node->cost_a < 0 && (*stack_b)->index != node->index)
+		{
+			reverse_rotate(stack_a);
+			reverse_rotate(stack_b);
+			write(1, "rrr\n", 4);
+			node->cost_a++;
+		}
+	}	
 }

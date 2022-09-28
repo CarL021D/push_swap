@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 01:35:50 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/26 18:16:06 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:30:56 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	sort_4_and_above(t_stack **stack_a, t_stack **stack_b, t_data *data)
 		set_b_node_b_cost(stack_b, b_size);
 	 	node = cheapest_node(stack_b);
 		rr_or_rrr_if_possible(stack_a, stack_b, node);
-		rotate_til_b_node_is_first(stack_b, node, b_size);
+		rotate_node_to_1st(stack_b, node, b_size, STACK_B);
 		rotate_a_to_take_b_node(stack_a, node->cost_a);
 		push(stack_b, stack_a);
 		write(1, "pa\n", 3);

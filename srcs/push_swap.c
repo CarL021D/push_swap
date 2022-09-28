@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:17 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/19 23:28:12 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/29 00:33:58 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,17 @@ int main(int ac, char **av)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (ac < 3 || !args_are_num(av))
+    if (ac < 3)
+        exit(EXIT_SUCCESS);
+    if (!args_are_num(av))
+    {
 		exit(EXIT_FAILURE);
-	set_values_int_tab(&data, av, ac);
+    }
+    set_values_int_tab(&data, av, ac);
 	exit_if_values_out_of_range(&data);
-	exit_if_values_already_sorted(&data);
+    exit_if_values_already_sorted(&data);
 	exit_if_duplicates(&data);
 	init_stack_a(&stack_a, &data);
 	sort_exec(&stack_a, &stack_b, &data);
 	free_all(&stack_a, &data);
-
-/*    
-    // PRINT STACKS
-    printf("\n\na\n");
-    while (stack_a)
-    {
-        printf("%d -> %d\n", stack_a->index, stack_a->value);
-        stack_a = stack_a->next;
-    }
-    
-    printf("\nB\n");
-    while (stack_b)
-    {
-        printf("%d -> %d\n", stack_b->index, stack_b->value);
-        stack_b = stack_b->next;
-    }
-*/
 }
