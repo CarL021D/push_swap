@@ -6,19 +6,19 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 00:24:31 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/20 00:01:38 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:15:40 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void    sort_2(t_stack **stack_a)
+void	sort_2(t_stack **stack_a)
 {
 	swap_first_and_second(stack_a);
 	write(1, "sa\n", 3);
 }
 
-void    sort_3_instructions(t_stack **stack_a, int *tab)
+void	sort_3_instructions(t_stack **stack_a, int *tab)
 {
 	if ((tab[0] < tab[2] && tab[2] < tab[1])
 		|| (tab[1] < tab[0] && tab[0] < tab[2])
@@ -41,11 +41,11 @@ void    sort_3_instructions(t_stack **stack_a, int *tab)
 	}
 }
 
-void    sort_3(t_stack **stack_a)
+void	sort_3(t_stack **stack_a)
 {
 	t_stack		*a_node;
-	int		*tab;
-	int		i;
+	int			*tab;
+	int			i;
 
 	a_node = *stack_a;
 	tab = malloc(sizeof(int) * 3);

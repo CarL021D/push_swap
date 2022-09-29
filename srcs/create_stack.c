@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:20:35 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/14 00:56:52 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:02:55 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ t_stack	*create_node(t_data *data)
 	if (!node)
 	{
 		free(data->tab);
-		exit(EXIT_FAILURE);        
+		exit(EXIT_FAILURE);
 	}
 	node->next = NULL;
 	return (node);
 }
 
-void    create_stack(t_stack **stack_a, t_data *data)
+void	create_stack(t_stack **stack_a, t_data *data)
 {
-	t_stack     *node;
-	int         i;
+	t_stack		*node;
+	int			i;
 
 	i = 1;
 	node = create_node(data);

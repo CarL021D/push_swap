@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:02:53 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/28 23:51:25 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:45:49 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 void	presort_push(t_stack **a, t_stack **b, t_stack *node, int size)
 {
-		rotate_node_to_1st(a, node, size, STACK_A);
-        push(a, b);
-       	write(1, "pb\n", 3);
-        set_current_position(a);
+	rotate_node_to_1st(a, node, size, STACK_A);
+	push(a, b);
+	write(1, "pb\n", 3);
+	set_current_position(a);
 }
 
 int	is_not_1_of_3_highest_node(t_data *data, int node_index)
 {
 	if (node_index != data->values_count - 1
 		&& node_index != data->values_count - 2
-			&& node_index != data->values_count - 3)
+		&& node_index != data->values_count - 3)
 		return (1);
 	return (0);
 }
 
-int     presort_divider(int count)
-{       
-	int     divider;
+int	presort_divider(int count)
+{
+	int		divider;
 
 	if (count <= 100)
 		divider = count / 3;
@@ -42,15 +42,15 @@ int     presort_divider(int count)
 	return (divider);
 }
 
-void    push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
-{      
-    t_stack		*a_node;
-    int			range;
-    int			stack_size;
+void	push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
+{
+	t_stack		*a_node;
+	int			range;
+	int			stack_size;
 	int			loop;
 
 	range = presort_divider(data->values_count);
-	stack_size =  data->values_count;
+	stack_size = data->values_count;
 	while (range <= data->values_count + 3)
 	{
 		a_node = *stack_a;
@@ -71,10 +71,10 @@ void    push_presort_to_b(t_stack **stack_a, t_stack **stack_b, t_data *data)
 	}
 }
 
-void    sort_a(t_stack **stack_a, t_data *data)
+void	sort_a(t_stack **stack_a, t_data *data)
 {
 	t_stack		*a_node;
-	int		rotate_count;
+	int			rotate_count;
 
 	a_node = *stack_a;
 	rotate_count = 0;

@@ -6,17 +6,17 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:13:32 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/14 01:45:40 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:15:07 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void    set_final_index_values(t_stack **stack_a)
+void	set_final_index_values(t_stack **stack_a)
 {
 	t_stack		*node_to_set;
 	t_stack		*a_node;
-	int		pos;
+	int			pos;
 
 	node_to_set = *stack_a;
 	while (node_to_set)
@@ -37,7 +37,7 @@ void    set_final_index_values(t_stack **stack_a)
 void	set_nodes_values(t_stack **stack_a, t_data *data)
 {
 	t_stack		*node;
-	int		i;
+	int			i;
 
 	node = *stack_a;
 	i = 0;
@@ -52,7 +52,7 @@ void	set_nodes_values(t_stack **stack_a, t_data *data)
 void	set_current_position(t_stack **stack)
 {
 	t_stack		*node;
-	int		i;
+	int			i;
 
 	node = *stack;
 	i = 0;
@@ -67,7 +67,7 @@ void	set_current_position(t_stack **stack)
 int	first_targ_pos_value(t_stack **stack_a, int index)
 {
 	t_stack		*a_node;
-	int		i;
+	int			i;
 
 	a_node = *stack_a;
 	i = 0;

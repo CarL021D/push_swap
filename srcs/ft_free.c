@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 20:40:54 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/29 00:27:30 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:00:37 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_list(t_stack **stack_a)
 	}
 }
 
-void    free_tab_and_exit(t_data *data, int id)
+void	free_tab_and_exit(t_data *data, int id)
 {
 	free(data->tab);
 	if (id == 1)
