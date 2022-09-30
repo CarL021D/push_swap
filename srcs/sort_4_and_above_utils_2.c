@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:02:53 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/29 20:45:49 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/10/01 00:25:28 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	presort_divider(int count)
 	int		divider;
 
 	if (count <= 100)
-		divider = count / 3;
+		divider = count / 2;
 	else if (count <= 250)
 		divider = count / 3;
 	else

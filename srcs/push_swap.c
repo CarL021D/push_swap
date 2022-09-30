@@ -6,7 +6,7 @@
 /*   By: caboudar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:14:17 by caboudar          #+#    #+#             */
-/*   Updated: 2022/09/29 20:39:44 by caboudar         ###   ########.fr       */
+/*   Updated: 2022/10/01 00:51:51 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (ac < 3)
+	if (ac == 1)
 		exit(EXIT_SUCCESS);
 	if (!args_are_num(av))
 	{
@@ -38,6 +38,8 @@ int	main(int ac, char **av)
 	}
 	set_values_int_tab(&data, av, ac);
 	exit_if_values_out_of_range(&data);
+	if (ac == 2)
+		free_tab_and_exit(&data, SUCCESS);
 	exit_if_values_already_sorted(&data);
 	exit_if_duplicates(&data);
 	init_stack_a(&stack_a, &data);
